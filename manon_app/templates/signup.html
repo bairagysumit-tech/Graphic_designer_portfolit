@@ -1,0 +1,108 @@
+{% extends 'manon_base.html' %}
+
+{% block content %}
+
+<div class="container-fluid mt-3" id="content">
+	<div class="row p-0 m-0">
+		<div class="col-lg-3 col-md-2 col-xl-4"></div>
+		<div class="col-lg-6 col-md-8 col-xl-4" >
+			<div class=" p-4 rounded shadow-bw">
+			<h3 class="text-center"> SignUp</span></h3> 
+			<div class="d-none">
+			
+			</div>
+				<form method="post" >
+					{% csrf_token %}
+					<h5> Frist Name  :</h5>
+						<div class="input-group mb-3 ">
+					<input type="text" name="f-name" placeholder="Frist Name" class="form-control  f-name" required>
+					</div>
+					
+					<h5> Last Name  :</h5>
+						<div class="input-group mb-3 ">
+					<input type="text" name="l-name" placeholder="Last Name" class="form-control  l-name" required>
+					</div>
+					<h5> E-mail  : <span><h6 class="text-danger">{{massage}}</h6></span></h5>
+						<div class="input-group mb-3 ">
+					<input type="email" name="email" placeholder="Email" class="form-control  user" required>
+					</div>
+					<h5>Password : <span></span> </h5>
+					<h6>Rule: a-z, A-Z, 0-9, ($, %, _, @) atlast 8 Chartar</h6>
+					<div class="input-group mb-3 ">
+					<input type="password" name="password" class="form-control password border border-1  " placeholder="Password" required>
+					</div>
+					<h5>Re-password :<span></span> </h5>
+					<div class="input-group mb-3 ">
+					  <input type="password" name="repassword" class="form-control  repassword  border border-1 " placeholder="Re-password" required>
+					</div>
+					<input type="submit" value="Submit" class="btn btn-primary w-100 submit" >
+				</form>
+			</div> <br>
+			<div class="mb-5 d-flex justify-content-between">
+				<div>
+				<a href="/signin/" class="text-decoration-none">
+					<h6 class="bi bi-person text-secondary" >Sign In</h6>
+				</a>
+				</div>
+				
+				<div>
+			
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-3 col-md-2 col-xl-4">
+		
+		</div>
+	</div>
+	
+	<script>
+		$(document).ready(function(){
+			$('.submit').attr('disabled', true);
+			var pas = $('.password');
+			var re_pas = $(".repassword");
+			var number = /([0-9])/;
+			var alphabets = /([A-Z])/;
+			var special=/([$,%,_, @])/;
+			var password = $('.password').val().trim();
+			
+			$('.submit').click(function(){
+				if((pas.val().length > 7) && (pas.val().match(alphabets)) && (pas.val().match(number)) && (pas.val().match(special))){
+					return true;}
+				else{return false;}
+			});
+			
+			pas.keyup(function(){
+				console.log(pas.val().length )
+				if((pas.val().length > 7) && (pas.val().match(alphabets)) && (pas.val().match(number)) && (pas.val().match(special))){
+					pas.removeClass(' border-danger')
+					pas.addClass(' border-success');
+					$('.submit').attr('disabled', false);
+					
+					}
+				
+				else{
+					pas.removeClass(' border-success');
+					pas.addClass(' border-danger');
+					$('.submit').attr('disabled', true);
+					}
+			});
+
+			re_pas.keyup(function(){
+				if( pas.val() == re_pas.val()){
+					$('.repassword').removeClass('  border-danger');
+					$('.repassword').addClass('  border-success');
+					$('.submit').attr('disabled', false);
+				}
+				else{
+					$('.repassword').removeClass('  border-success');
+					$('.repassword').addClass('  border-danger');
+					$('.submit').attr('disabled', true);}
+					});
+		});
+		
+	</script>
+	
+</div>
+
+
+{% endblock %}

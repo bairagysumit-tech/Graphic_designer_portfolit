@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>{% block title %} {% endblock %}</title>
+	<meta charset="ISO-8859-1">
+	<meta name="description" content="{% block meta %} {% endblock %}">
+	<meta name="robots" content="index, follow">
+	{% block canonical %} {% endblock %}
+  	<meta name="keywords" content="{% block tag %} {% endblock %}">
+	<link rel="icon" type="image/x-icon" href="/static/image/Manon.png">
+	
+	<meta property="og:title" content="{% block title1 %} {% endblock %}">
+  	<meta property="og:description" content="{% block meta1 %} {% endblock %}">
+  	{% block image %} {% endblock %}
+  	{% block url %} {% endblock %}
+  	<meta property="og:type" content="website">
+	
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	
+	
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+						
+
+								
+								
+	<link rel="stylesheet" href="/static/manon_style.css">
+	<script type="text/javascript" src="/static/js/manon_js.js"> </script>
+
+
+								<!-- Slick Slider -->
+	<script type="text/javascript" src="/static/slick/slick.min.js"></script> 
+	<link rel="stylesheet" href="/static/slick/slick.css"> 
+	<link rel="stylesheet" href="/static/slick/slick-theme.css">
+								<!--Slick Slider End -->
+	
+	<script type="text/javascript">
+	if (window.history.replaceState){
+		window.history.replaceState(null,null,window.location.href);
+	}
+	
+	
+	</script>
+	
+	<script type="text/javascript">
+    jQuery("body").prepend('<div id="preloader">Loading...</div>');
+    jQuery(document).ready(function() {
+        jQuery("#preloader").remove();
+    });
+	</script>
+	
+	<style>
+		#preloader{display: block; background-color: rgb(192, 192, 192); opacity: 0.5; height: 100%; width: 100%; position: fixed; margin-top:-20px; padding:0; opacity: 1;  z-index: 99; }
+		.loader {position: relative;display: flex;align-items: center;justify-content: center;width: 100%;max-width: 6rem;margin-top: 3rem;margin-bottom: 3rem;}
+  		.loader:before,
+  		.loader:after {ontent: "";position: absolute;border-radius: 50%;animation: pulsOut 1.8s ease-in-out infinite;filter: drop-shadow(0 0 1rem rgba(255, 255, 255, 0.75));}
+  		.loader:before {width: 100%;padding-bottom: 100%;box-shadow: inset 0 0 0 1rem #fff;animation-name: pulsIn;}
+  		.loader:after {width: calc(100% - 2rem);padding-bottom: calc(100% - 2rem);box-shadow: 0 0 0 0 #fff;}
+		.sign_in{display: block;  background-color: rgba(192, 192, 192, .6);  height: 100vh; width: 100%; position: fixed; margin-top:-20px; padding:0;  z-index: 99; }
+  		.sign_in:before{opacity: 0.5;}
+  		.opacity-1{ z-index: 999;}
+  @keyframes pulsIn {0% {box-shadow: inset 0 0 0 1rem #fff; opacity: 1;}50%, 100% {box-shadow: inset 0 0 0 0 #fff; opacity: 0;}}
+  @keyframes pulsOut {0%, 50% {box-shadow: 0 0 0 0 #fff;opacity: 0;}
+    100% {box-shadow: 0 0 0 1rem #fff;opacity: 1;}}
+	</style>
+	
+</head>
+ <body class="body">
+	 
+	 <div class=" d-flex justify-content-center align-items-center" id="preloader">
+		 <div class="loader"></div>
+	 </div>
+	 
+
+	 
+	 
+	 
+    <div class="body_wrap " >
+		<div class="mobile_nav_bar ">
+        
+        <div class="mobile_nav_wrap">
+          <div class="mobile_nav_link ">
+            <a href="/" class="home_link ">Home</a>
+          </div>
+          <div class="mobile_nav_link">
+            <a href="/about/" class="home_link">About</a>
+          </div>
+          <div class="mobile_nav_link">
+            <a href="/portfolio/" class="home_link">Design</a>
+          </div>
+          <div class="mobile_nav_link">
+            <a href="/blog/" class="home_link">Blog</a>
+          </div>
+          <div class="mobile_nav_link">
+            <a href="/contact/" class="home_link">Contact</a>
+          </div>
+          
+          <div class="close_btn ">
+	          <div class="close_btn_wrap">
+	            <div class="close_bar bar_one"></div>
+	            <div class="close_bar bar_two"></div>
+	          </div>
+        </div>
+        </div>
+      </div>
+		<section class="nav-div" >
+	        <div  class="nav-wrap">
+	          <div class="nav-inner-wrap home_navebar">
+	            <div class="nav_inner_post_wrap">
+	              <div class="brand">
+	                <a href="#" class="link">Manon.</a>
+	              </div>
+	              <div class="nav-link">
+	                <div class="nav_group">
+	                	<a href="/"  class="home {{active_home}}" >
+						  <div class="home_text">Home</div>
+					  	</a>
+						<a href="/about/" class="about {{active_about}}" href="#">
+							  <div class="about-text">About</div>
+						</a>
+						<a class="portfolio  {{active_port}}" href="/portfolio/">
+	                    	<div class="portfolio_text">Design</div>
+	                  	</a>
+	                  	<a href="/blog/" class="portfolio    {{active_blog}}">
+	                    	<div class="blog_text ">Blog</div>
+	                  	</a>
+	                  	<a class="contact  {{active_contact}}" href="/contact/">
+	                    	<div class="contact_text">Contact</div>
+	                  	</a>
+	                </div>
+	                <div class="nav_btn_wrap">
+	                  <div class="nav_btn">
+	                    <div class="bar bar1"></div>
+	                    <div class="bar bar2"></div>
+	                    <div class="bar bar3"></div>
+	                  </div>
+	                </div>
+	                
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+    	</section>
+    	
+    	
+    	{% block content %}
+    	
+    	{% endblock %}
+    	 <section class="footer">
+        <div data-w-id="6132d096-3e87-4b54-5b39-6e73bb7c5f1a" class="footer_inner_wrap">
+          <div class="footer_inner_div">
+            <div class="footer-con w-row">
+              <div class="footer-col-1 w-col w-col-6">
+                <a href="#" class="link">Manon.</a><p class="paragraph" >
+                 I am a professional motion and graphic designer, along with a video editor. I have wide-ranging experience creating everything from explainer videos to social media ads, commercials, and music videos. I am an expertise in the following software programs:
+- Adobe After Effects, Premiere Pro, Illustrator and Photoshop.
+                </p>
+                <div class="social_wrap">
+            <div class="social_link_btn">
+              <a href="#" class="social_link_button" target=”_blank”></a>
+            </div>
+            <div class="social_link_btn">
+              <a href="#" class="social_link_button" target=”_blank”></a>
+            </div>
+            <div class="social_link_btn">
+              <a href="#" class="social_link_button" target=”_blank”></a>
+            </div>
+            <div class="social_link_btn">
+              <a href="#" class="social_link_button" target=”_blank”></a>
+            </div>
+            <div class="social_link_btn">
+              <a href="#" class="social_link_button fa-icon" target=”_blank”></a>
+            </div>
+          </div>
+              </div>
+              <div class="footer_col_2 w-col w-col-6">
+                <div class="text-block">
+                  <strong class="bold-text">Subscribe to my newsletter</strong>
+                </div>
+                <div class="w-form">
+                  <form id="email-form" name="email-form" data-name="Email Form" method="post" class="form" data-wf-page-id="64e45009d3ec364cbf80d327" data-wf-element-id="6132d096-3e87-4b54-5b39-6e73bb7c5f3a">
+                   {% csrf_token %}
+					<input type="email" class="text-field w-input" maxlength="256" name="emial" data-name="Name 2" placeholder="Email address" id="name-2" required="" />
+                    <input type="submit" value="Submit" data-wait="Please wait..." class="submit-button w-button" />
+                  </form>
+                  <div class="w-form-done">
+                    <div>Thank you! Your submission has been received!</div>
+                  </div>
+                  <div class="w-form-fail">
+                    <div>Oops! Something went wrong while submitting the form.</div>
+                  </div>
+                </div>
+                <div class=" d-flex justify-content-center p-5">
+						{% if user.is_authenticated %}
+						<div class="">
+				        	<h6>Welcome {{ user.user_profile.f_name }} !!!</h6> 
+				        	{% if user.user_profile.profile == 'user' %}
+				        
+				        	{% endif %}
+				        	<a href="/signout/?next={{ request.path }}"><h6 class="btn  shadow-bw rounded">Sign Out</h6></a>
+				        </div>	
+				        {% else %}
+				        <div class="">
+				        <a href="/signin/?next={{ request.path }}"><h1 class="btn  shadow-bw rounded-pill bi bi-lock ms-3 w-100"> Sign In</h1></a>
+			        	{% endif %} 
+			        	</div>
+			        	<div class="">
+			        	{% if user.is_authenticated and user.user_profile.profile == 'staf' or user.is_superuser  %}
+			        		<a href="/design-insert/"><h6 class="btn  shadow-bw rounded">Design Insert</h6></a>
+			        	{% endif %}
+			        	</div>
+				</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      	
+	</div>
+	
+<script>
+	$(document).ready(function(){
+		$('.nav_btn').click(function(){
+			$('.body').addClass('overflow-hidden');
+		});
+		
+	$('.close_btn').click(function(){
+			$('.body').removeClass('overflow-hidden');
+		});
+		
+		
+	});
+	
+	$(window).resize(function(){
+		$('.body').removeClass('overflow-hidden');
+	});
+	
+</script>
+
+</body>
+</html>

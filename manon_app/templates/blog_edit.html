@@ -1,0 +1,154 @@
+{% extends 'manon_base.html' %}
+
+{% block content %}
+
+		{% if user.user_profile.profile == 'staf' or  user.user_profile.profile == 'admin'  or user.is_superuser %}
+			
+		<div class="d-flex justify-content-center my-5">	
+			<div class="shadow-bw rounded-30 p-3  w-50">
+			
+			<div class=" border-bottom border-1 border-secondary mb-2 ">
+				<div class="">
+					<h4 class="bi bi-clock"> {{blog.time}}</h4>
+				</div>	
+			</div>
+		
+			
+		  <div class="rounded-top-20 overflow-hidden">
+			  	<div class="one-time">
+					{% for m in image %}
+    					
+				  		<div class="">
+							<img class=" w-100" src="{{ m.image.url}}" >
+			  			</div>
+			  			 {
+					{% endfor%}
+		  		</div>
+		  </div>
+		  
+		  <div class="row p-1" id="image-box">
+			  {% for m in image %}
+			  <div class="col-sm-3 p-1" >
+				  <div class="shadow-bw p-2 text-center">
+				  	<img src="{{ m.image.url}}" class="w-100">
+				  	<h6 class="bi bi-trash text-danger btn  p-0 m-0 image-delete" id="{{m.id}}"></h6>
+				  </div>
+			  </div>
+			  {% endfor %}
+		  </div>
+		  <script>
+		  		$(document).on('click', '.image-delete', function()
+				{
+						var postid = $(this).attr('id');
+						var url1 = '/blog-image-delete/';
+						
+						$.ajax({
+			 			type:'POST',
+			 			url :url1,
+			 			data : {postid:postid,
+			 					csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()},
+			 			success:function(){$("#image-box").load(location.href + " #image-box");} 
+			 		});
+				});
+		  </script>
+		  <div class="">
+					<form method="POST"  enctype="multipart/form-data" >
+						{% csrf_token%}
+						<div class="image_get">
+							<!--<div class="my-3 shadow-bw rounded p-1 "> <input type="file" name="image0" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> -->
+						</div>
+						<div class="d-flex justify-content-center">
+							<h6 class="bi bi-card-image mx-3 btn btn-light shadow-bw add_image "> Add Image</h6>
+							<!--<h6 class="bi bi-trash-fill mx-3 btn btn-danger  shadow-bw del_image "> Delete Image</h6> -->
+						</div>
+						<input type="text" name="lr" value="0" class="lr d-none">
+						<script>
+
+						$(document).ready(function(){
+							
+							var input_fields = '<div class="my-3 shadow-bw rounded p-1 input_iamge d-flex"><input type="file" name="image0" class="form-control image_input" id="exampleInputEmail1" aria-describedby="emailHelp" require><h6 class="bi bi-trash-fill btn p-1 ps-3 m-0 text-danger image_delete"></h6></div>';
+							var del_div = $('.del_image');
+							
+							del_div.on('click',function(event){
+								var divs = $('.image_get').find('div').length;
+								if (divs >1){
+								$('.image_get div:last-child').remove();}
+							});
+							
+							$('.add_image').click(function(){
+								var divs = $('.image_get').find('div').length;
+								var last_div = $('.image_get div:last-child').find('input[type=file]').val();
+								
+								if (last_div != '' )
+									{
+										$('.image_get').append(input_fields);
+										$('.image_input').each(function(index, element)
+											{
+												$(element).attr('name','image'+index);
+											}
+										);
+										$('.lr').val(divs+1);
+										
+									}
+								else{ $('.add_iamge').addClass('d-none');}
+							});
+							
+						});
+						
+						$(document).on('click', '.image_delete', function()
+							{
+							$(this).parent().remove();
+							$('.image_input').each(function(index, element)
+								{
+									$(element).attr('name','image'+index);
+								});
+							var divs = $('.image_get').find('div').length;
+								$('.lr').val(divs);
+							});
+							
+						</script>
+				
+					  
+					   	<div class="mb-3">
+					    	<label for="exampleInputEmail1" class="form-label">Title of Blog....</label>
+					    	<input type="text" name="blog" value="{{ blog.title1 }}" class="form-control" placeholder="Blog Title" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+					  	</div>
+					  
+					  	<div class="mb-3">
+					  		<label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+					  		<textarea class="form-control" name="blog_text" id="exampleFormControlTextarea1" rows="3" placeholder="Blog Text" required>{{blog.blog}}</textarea>
+						</div>
+						<div class="mb-3">
+					    	<label for="exampleInputEmail1" class="form-label">Blog Tag</label>
+					    	<input type="text" name="blog_tag" value="{{ blog.blog_tag }}" class="form-control" placeholder="Blog Tag" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+					  	</div>
+					  	<button type="submit" class="btn btn-primary w-100">Submit</button>
+					</form>
+				</div>
+		  
+    	</div>
+    	
+    	    	<script>
+			  $(document).ready(function(){
+				$('.one-time').slick({
+				  dots: true,
+				  infinite: true,
+				  speed: 300,
+				  slidesToShow: 1,
+				  adaptiveHeight: true
+				});
+				
+				$('.comment-btn').click(function(){
+					var targets = $(this).closest(".row").find(".comment");
+					$(targets).toggleClass('d-none');
+				});
+			  });
+		  </script>
+	</div>
+
+
+{% endif %}
+				    	
+
+
+{% endblock %}

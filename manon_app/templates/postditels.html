@@ -1,0 +1,335 @@
+{% extends 'manon_base.html' %}
+{% block meta %}  {{blog.blog|truncatechars:200}}  {% endblock %}
+{% block tag %}   {{blog.blog_tag}} {% endblock %}
+{% block title %} {{blog.title1}}  {% endblock %}
+
+{% block title1 %}{{blog.title1}}{% endblock %}
+{% block meta1 %}{{get_design.ditels}}{%endblock %}
+
+{% block canonical %}
+	<link rel="canonical" href="/design-ditels/{{blog.blog_slug}}">
+{% endblock %}
+
+
+{% block url %}
+	 <meta property="og:url" content="/design-ditels/{{blog.blog_slug}}">
+{% endblock %}
+
+
+
+{% block content %}
+
+  <div class="blog_section mb-5">
+    <div class="blog_block p-5">
+      <div class="div-block-2 px-5 pb-3 border-bottom border-1 border-secondary mb-5">
+        <h4 class="heading-6">Blog Ditels</h4>
+      </div>
+
+	<div class="shadow-bw rounded-30 p-5 container">
+		<div class=" border-bottom border-1 border-secondary mb-2  ">
+			<div class="">
+				<h4 class="bi bi-clock"> {{blog.time}}</h4>
+			</div>	
+		</div>
+  <div class="rounded-top-20 overflow-hidden">
+	  	<div class="one-time">
+			{% for m in image %}
+				{% if blog == m.image_id %}
+		  		<div class="">
+					<img class=" w-100" src="{{ m.image.url}}" alt="{{m.img_alt}}" title="{{m.img_title}}" >
+	  			</div>
+	  			 {%endif %}
+			{% endfor%}
+  		</div>
+  		<h1>{{ blog.title1 }}</h1>
+  		<h6 class="py-2">{{blog.blog}}</h6>
+  		<h6 class="py-2">{{blog.blog_tag}}</h6>
+  </div>
+  
+	<div class="">
+    	<div class="p-2">
+        	<div class="d-flex justify-content-around border-top border-1 border-secondary">
+				{% if user.is_authenticated %}
+				<div class="" id="like{{blog.id}}">
+					<h4 class="bi bi-heart-fill btn text-danger like{{blog.id}}"> {{blog.like}} </h5>
+				</div>
+				<div class="">
+					<h4 class="bi bi-chat-square-dots btn text-dark comment-btn"> {{blog.comment}}</h4>
+				</div>
+				{% else %}
+				<a href="/signin/?next={{ request.path }}">
+					<div class="" id="">
+						<h4 class="bi bi-heart-fill btn text-danger "> {{blog.like}} </h4>
+					</div>
+				</a>
+				<a href="/signin/?next={{ request.path }}">
+					<div class="">
+						<h4 class="bi bi-chat-square-dots btn text-dark comment-btn"> {{blog.comment}} </h4>
+					</div>
+				</a>
+				{% endif %}
+				<div class="">
+					<h4 class="bi bi-eye btn  text-primary "> {{blog.blog_view}}</h4>
+				</div>
+			</div>
+		</div> 
+	</div>
+	
+		<div class="comment  text-secondary p-5 shadow-bw rounded-15 " >
+			<div class="d-flex border-bottom border-1 border-secondary my-2 justify-content-between">
+				<h2 class="">Comment</h2>
+				{% if user.is_authenticated %}
+				<h2 class="bi bi-pencil-square btn comment-btn"></h2>
+			</div>
+			<div class="p-1  rounded p-5 comment-input shadow-bw d-none">
+				<form method="POST"  enctype="multipart/form-data" >
+					{% csrf_token%}
+				  	<div class="mb-3">
+				  		<label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+				  		<textarea class="form-control" name="comment" id="exampleFormControlTextarea1" rows="3" placeholder="Comment" required></textarea>
+					</div>
+				  	<button type="submit" class="btn btn-primary w-100">Submit</button>
+				</form>
+				{% else %}
+					<a class="text-decoration-none text-secondary" href="/signin/?next={{ request.path }}" ><h2 class="bi bi-pencil-square btn comment-btn"></h2></a>
+				{% endif %}
+				
+				
+			</div>
+			
+			<div class="" id="comment-div">
+				{% for i in comment %}
+				
+					{% if  blog == i.post and i.comm_status == "Published"   %}
+						<div class="p-3 shadow-bw my-4 rounded overflow-hidden comment-div">
+							<h4>{{ i.user.user_profile.f_name }}</h4>
+							<h6 class="ms-1">{{i.cr_date}}</h6>
+							<h6 class="ms-2">{{i.comm}}
+							{% if user.is_authenticated and user == i.user  %}
+								<span class="text-warning p-0 m-0 fw-bold" >{{i.comm_status }}</span>
+								<span class="bi bi-trash comment-delete text-danger btn p-0 m-0" id="{{i.id}}"></span>
+							{% endif %}
+							{% if user.is_authenticated  and user.is_superuser or user.user_profile.profile == 'staf'  %}
+							<span class="text-warning comment-status btn p-0 m-0 fw-bold" id="{{i.id}}">{{i.comm_status }}</span>
+							<span class="bi bi-trash comment-delete text-danger btn p-0 m-0" id="{{i.id}}"></span>
+							{% endif %}
+							</h6>
+							{% for rep in reply %}
+								
+									{% if rep.comment == i %}
+										<div class="shadow-bw p-2 m-3 rounded ">
+										<h5>{{rep.user.user_profile.f_name}}</h5>
+										<h6>{{rep.reply}}</h6>
+									</div>
+									{% endif %}
+								
+							{% endfor %}
+							
+							{% if user.is_authenticated %}
+								<div class="btn me-0 reply-btn"><h6 class="">Reply</h6></div>
+							{% else %}
+								<div class=""><a class="text-decoration-none text-secondary" href="/signin/?next={{ request.path }}"><h6 class="">Reply</h6></a></div>
+							{% endif %}
+							
+							
+							<div class="p-1 shadow-bw rounded mx-5 mb-5 p-5 d-none reply-input">
+								<form method="POST" action="/comment-reply/" enctype="multipart/form-data" >
+									{% csrf_token%}
+								  	<div class="mb-3">
+								  		<label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+								  		<textarea class="form-control" name="reply" id="exampleFormControlTextarea1" rows="3" placeholder="Reply" required></textarea>
+									</div>
+									<input type="hidden" value="{{blog.id}}" name="post">
+									<input type="hidden" value="{{i.id}}" name="comment">
+									<input type="hidden" value="/blog_ditels/{{blog.blog_slug}}" name="next">
+								  	<button type="submit" class="btn btn-primary w-100">Submit</button>
+								</form>
+							</div>
+						</div>
+						
+				{% elif  blog == i.post  and  user.is_superuser or user.user_profile.profile == 'staf' %}
+						<div class="p-3 shadow-bw my-4 rounded overflow-hidden comment-div">
+							<h4>{{ i.user.user_profile.f_name }}</h4>
+							<h6 class="ms-1">{{i.cr_date}}</h6>
+							<h6 class="ms-2">{{i.comm}}
+							{% if user.is_authenticated and user == i.user  %}
+								<span class="text-warning p-0 m-0 fw-bold" >{{i.comm_status }}</span>
+								<span class="bi bi-trash comment-delete text-danger btn p-0 m-0" id="{{i.id}}"></span>
+							{% endif %}
+							{% if user.is_authenticated  and user.is_superuser or user.user_profile.profile == 'staf'  %}
+							<span class="text-warning comment-status btn p-0 m-0 fw-bold" id="{{i.id}}">{{i.comm_status }}</span>
+							<span class="bi bi-trash comment-delete text-danger btn p-0 m-0" id="{{i.id}}"></span>
+							{% endif %}
+							</h6>
+							{% for rep in reply %}
+								
+									{% if rep.comment == i %}
+									<div class="shadow-bw p-2 m-3 rounded ">
+										<h5>{{rep.user.user_profile.f_name}}</h5>
+										<h6>{{rep.reply}}</h6>
+									</div>
+									{% endif %}
+								
+							{% endfor %}
+							
+							{% if user.is_authenticated %}
+								<div class="btn me-0 reply-btn"><h6 class="">Reply</h6></div>
+							{% else %}
+								<div class=""><a class="text-decoration-none text-secondary" href="/signin/?next={{ request.path }}"><h6 class="">Reply</h6></a></div>
+							{% endif %}
+							
+							
+							<div class="p-1 shadow-bw rounded mx-5 mb-5 p-5 d-none reply-input">
+								<form method="POST" action="/comment-reply/" enctype="multipart/form-data" >
+									{% csrf_token%}
+								  	<div class="mb-3">
+								  		<label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+								  		<textarea class="form-control" name="reply" id="exampleFormControlTextarea1" rows="3" placeholder="Reply" required></textarea>
+									</div>
+									<input type="hidden" value="{{blog.id}}" name="post">
+									<input type="hidden" value="{{i.id}}" name="comment">
+									<input type="hidden" value="/blog_ditels/{{blog.blog_slug}}" name="next">
+								  	<button type="submit" class="btn btn-primary w-100">Submit</button>
+								</form>
+							</div>
+						</div>	
+						
+					{% elif  blog == i.post  and  user == i.user %}
+						<div class="p-3 shadow-bw my-4 rounded overflow-hidden comment-div">
+							<h4>{{ i.user.user_profile.f_name }}</h4>
+							<h6 class="ms-1">{{i.cr_date}}</h6>
+							<h6 class="ms-2">{{i.comm}}
+							{% if user.is_authenticated and user == i.user  %}
+								<span class="text-warning p-0 m-0 fw-bold" >{{i.comm_status }}</span>
+								<span class="bi bi-trash comment-delete text-danger btn p-0 m-0" id="{{i.id}}"></span>
+							{% endif %}
+							{% if user.is_authenticated  and user.is_superuser or user.user_profile.profile == 'staf'  %}
+							<span class="text-warning comment-status btn p-0 m-0 fw-bold" id="{{i.id}}">{{i.comm_status }}</span>
+							<span class="bi bi-trash comment-delete text-danger btn p-0 m-0" id="{{i.id}}"></span>
+							{% endif %}
+							</h6>
+							{% for rep in reply %}
+								
+									{% if rep.comment == i %}
+										<div class="shadow-bw p-2 m-3 rounded ">
+										<h5>{{rep.user.user_profile.f_name}}</h5>
+										<h6>{{rep.reply}}</h6>
+									</div>
+									{% endif %}
+								
+							{% endfor %}
+							
+							{% if user.is_authenticated %}
+								<div class="btn me-0 reply-btn"><h6 class="">Reply</h6></div>
+							{% else %}
+								<div class=""><a class="text-decoration-none text-secondary" href="/signin/?next={{ request.path }}"><h6 class="">Reply</h6></a></div>
+							{% endif %}
+							
+							
+							<div class="p-1 shadow-bw rounded mx-5 mb-5 p-5 d-none reply-input">
+								<form method="POST" action="/comment-reply/" enctype="multipart/form-data" >
+									{% csrf_token%}
+								  	<div class="mb-3">
+								  		<label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+								  		<textarea class="form-control" name="reply" id="exampleFormControlTextarea1" rows="3" placeholder="Reply" required></textarea>
+									</div>
+									<input type="hidden" value="{{blog.id}}" name="post">
+									<input type="hidden" value="{{i.id}}" name="comment">
+									<input type="hidden" value="/blog_ditels/{{blog.blog_slug}}" name="next">
+								  	<button type="submit" class="btn btn-primary w-100">Submit</button>
+								</form>
+							</div>
+						</div>	
+						
+					{% endif %}
+					
+					
+					
+				{% endfor %}
+			</div>
+
+		</div>
+
+
+
+		  </div> 
+	  </div>
+	  <div class="col-xl-3"></div>  
+  </div>
+		  
+	
+
+    	<script>
+			  $(document).ready(function(){
+				  
+				$('.one-time').slick({
+				  dots: true,
+				  infinite: true,
+				  speed: 300,
+				  slidesToShow: 1,
+				  adaptiveHeight: true
+				});
+				
+				$('.comment-btn').click(function(){
+					var targets = $(this).closest(".row").find(".comment");
+					$('.comment-input').toggleClass('d-none');
+				});
+				
+				$('.reply-btn').click(function(){
+					var targets = $(this).closest(".comment-div").find(".reply-input");
+					$(targets).toggleClass('d-none');
+				});
+				
+				
+			  });
+			  
+				$(document).on('click', '.like{{blog.id}}', function()
+							{
+									var postid = '{{blog.id}}';
+									//var postid=parseInt(post);
+									var url1 = '/postlike/';
+									$.ajax({
+						 			type:'POST',
+						 			url :url1,
+						 			data : {postid:postid,
+						 					csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()},
+						 			success:function(){$("#like{{blog.id}}").load(location.href + " #like{{blog.id}}");} 
+						 		});
+							});
+							
+							
+					$(document).on('click', '.comment-status', function()
+							{
+									var comment_id = $(this).attr('id');
+									var url_comment = '/comment-status/';
+									$.ajax({
+						 			type:'POST',
+						 			url :url_comment,
+						 			data : {comment_id:comment_id,
+						 					csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()},
+						 			success:function(){$("#comment-div").load(location.href + " #comment-div");} 
+						 		});
+							});
+							
+							
+					$(document).on('click', '.comment-delete', function()
+							{
+									var comment_del_id = $(this).attr('id');
+									var url_comment_del = '/comment-delete/';
+									$.ajax({
+						 			type:'POST',
+						 			url :url_comment_del,
+						 			data : {comment_id:comment_del_id,
+						 					csrfmiddlewaretoken:'{{ csrf_token }}',//$('input[name=csrfmiddlewaretoken]').val()},
+						 			success:function(){$("#comment-div").load(location.href + " #comment-div");} 
+						 		});
+							});
+							
+
+				
+		  </script>
+
+  
+
+{% endblock %}>
+

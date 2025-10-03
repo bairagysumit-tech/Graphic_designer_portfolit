@@ -1,0 +1,42 @@
+{% extends 'manon_base.html' %}
+
+{% block content %}
+
+<div class="container-fluid mt-3" id="content">
+	<div class="row p-0 m-0">
+		<div class="col-lg-3 col-md-2 col-xl-4"></div>
+		<div class="col-lg-6 col-md-8 col-xl-4" >
+			<div class=" p-4 rounded bg-light shadow">
+			<h3 class="text-center"> SignIn</span></h3> 
+			<div class="d-none">
+			
+			</div>
+				<form method="post" >
+					{% csrf_token %}
+					<div class="massa">
+						<h6 class="text-danger">{{massage}}</h6>
+					</div>
+					
+					<input type="email" name="username" placeholder="Email" class="form-control user" required><br>
+					<input type="hidden" name="next" value="{{request.GET.next}}">
+					
+					<label class='form-label'><b class="bi bi-lock-fill pass"></b> Password </label>
+					<div class="input-group mb-3 con">
+					  <input type="password" name="password" class="form-control pass" placeholder="Password" required>
+					  
+					</div>
+					<input type="submit" value="Submit" class="btn btn-primary w-100 mb-3">
+				</form>
+			</div> <br>
+			<div class="mb-5 d-flex justify-content-between py-5">
+				<div class=" btn shadow-bw ">
+					<a href="/signup/"  class="text-decoration-none">SignUp</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-3 col-md-2 col-xl-4">
+		
+		</div>
+	</div>
+</div>
+{% endblock %}

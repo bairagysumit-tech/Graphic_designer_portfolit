@@ -1,0 +1,308 @@
+{% extends 'manon_base.html' %}
+{% block meta %}{{get_design.ditels}}{%endblock %}
+{% block tag %}{{get_design.design_tag}}{%endblock %}
+
+{% block title %}{{get_design.ditels}}{% endblock %}
+{% block title1 %}{{get_design.ditels}}{% endblock %}
+{% block meta1 %}{{get_design.ditels}}{%endblock %}
+
+{% block canonical %}
+	<link rel="canonical" href="/design-ditels/{{get_design.image_slug}}">
+{% endblock %}
+
+{% block image %}
+	 <meta property="og:image" content="/design-ditels{{get_design.image.url}}">
+{% endblock %}
+
+{% block url %}
+	 <meta property="og:url" content="/design-ditels/{{get_design.image_slug}}">
+{% endblock %}
+
+{% block content %}
+
+
+<article>
+<author>admin</author>
+<publisher>Admin</publisher>
+<div class="d-flex justify-content-center p-3 ">	
+	<div class="shadow-bw rounded-30 p-5 pb-1">
+		<img src="{{get_design.image.url}}" alt="{{get_design.ditels}}" title="{{get_design.ditels}}" class="rounded-20  position-absolut">
+		<h1 class="d-none">{{get_design.ditels}}</h1>
+		<h2 class="d-none">Admin</h2>
+		<div class="d-felx p-2 " id="liked1">
+			<h6 class="bi bi-eye-fill d-inline px-2 text-success btn"> {{get_design.design_view}}</h6>
+			{% if user.is_authenticated %}
+			<h6 class="bi bi-heart design_like d-inline px-2 text-danger btn "  id="{{get_design.id}}"> {{get_design.design_like1|add:get_design.design_like}}</h6>
+			{% else %}
+			<a class="d-inline text-decoration-none" href="/signin/?next={{ request.path }}" > <h6 class="bi bi-heart  d-inline px-2 text-danger btn ">  {{get_design.design_like|add:get_design.design_like1 }}</h6> </a>
+			{% endif %}
+		</div>
+	</div>
+</div>
+</article>
+
+
+
+
+	{% if user.is_authenticated and user.user_profile.profile == 'staf' or user.is_superuser %}
+		<div class=" shadow-bw p-3 mb-5 rounded-pill d-flex justify-content-around">
+			<div class="">
+				<h4 class="btn shadow-bw"><a href="/design-update/{{get_design.id}}/" class="text-success text-decoration-none fw-bold">Update </a></h4> 
+			</div>
+			
+			<div class="">
+				<h4 class="btn shadow-bw"><a href="/design-delete/{{get_design.id}}/" class="text-danger text-decoration-none fw-bold">Delete </a href="" class="text-success text-decoration-none"></h4> 
+			</div>
+		</div>
+	{% endif %}
+
+<div class="shadow-bw rounded-30 p-5 mb-5">
+	<div class="row ">
+		{% for n in gad %}
+		<div class="col-lg-3 col-md-4 col-sm-6 my-2">
+			<div class="p-2 shadow-bw rounded-3">
+				<a href="/design-ditels/{{n.image_slug}}" class="click_count" id="{{n.image_slug}}">
+					<img  src="{{n.image.url}}" class="rounded-1"  >
+				</a>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	
+</div>
+</article>
+
+<section class="portfolio_div">
+    <div class="portfolio_block">
+      <div class="my_porttfolio">
+        <h4 class="heading-6">Design</h4>
+      </div>
+      
+
+      
+      <div class="all_design">
+        <div class="visiting_card">
+          
+          
+          <div class="slider">
+			  {% for n in flyer%}
+			  <div class="p-4">
+				  <div class="slid shadow-bw p-2 rounded">
+					  <a href="/design-ditels/{{n.image_slug}}" class="click_count" id="{{n.image_slug}}">
+					  	<img class="img-fluid rounded" src="{{n.image.url}}">
+					  </a>
+				  </div>
+			  </div>
+			  {% endfor %}
+		   </div>
+          
+          
+          
+        </div>
+      </div>
+      
+      <div class="all_design">
+        <div class="visiting_card">
+          
+          
+		<div class="slider">
+			  {% for n in brochure%}
+			  <div class="p-4">
+				  <div class="slid shadow-bw p-2 rounded">
+					  <a href="/design-ditels/{{n.image_slug}}" class="click_count" id="{{n.image_slug}}">
+					  <img class="img-fluid rounded" src="{{n.image.url}}">
+					  </a>
+				  </div>
+			  </div>
+			  {% endfor %}
+		  </div>
+          
+        </div>
+      </div>
+      
+      <div class="all_design">
+        <div class="visiting_card">
+			
+			<div class="slider">
+			  {% for n in branding %}
+			  <div class="p-4">
+				  <div class="slid shadow-bw p-2 rounded">
+					  <a href="/design-ditels/{{n.image_slug}}" class="click_count" id="{{n.image_slug}}">
+					  	<img class="img-fluid rounded" src="{{n.image.url}}">
+					  </a>
+				  </div>
+			  </div>
+			  {% endfor %}
+		  </div>
+          
+        </div>
+      </div>
+      
+      
+            <div class="all_design">
+        <div class="visiting_card">
+          
+          
+		<div class="slider">
+			  {% for n in instagram %}
+			  <div class="p-4">
+				  <div class="slid shadow-bw p-2 rounded">
+					  <a href="/design-ditels/{{n.image_slug}}" class="click_count" id="{{n.image_slug}}">
+					  <img class="img-fluid rounded" src="{{n.image.url}}">
+					  </a>
+				  </div>
+			  </div>
+			  {% endfor %}
+		  </div>
+          
+        </div>
+      </div>
+      
+      
+            <div class="all_design">
+        <div class="visiting_card">
+          
+          
+		<div class="slider">
+			  {% for n in post_card%}
+			  <div class="p-4">
+				  <div class="slid shadow-bw p-2 rounded">
+					  <a href="/design-ditels/{{n.image_slug}}" class="click_count" id="{{n.image_slug}}">
+					  <img class="img-fluid rounded" src="{{n.image.url}}">
+					  </a>
+				  </div>
+			  </div>
+			  {% endfor %}
+		  </div>
+          
+        </div>
+      </div>
+      
+      
+       <div class="all_design">
+        <div class="visiting_card">
+          
+          
+		<div class="slider">
+			  {% for n in rack_card %}
+			  <div class="p-4">
+				  <div class="slid shadow-bw p-2 rounded">
+					  <a href="/design-ditels/{{n.image_slug}}" class="click_count" id="{{n.image_slug}}">
+					  <img class="img-fluid rounded" src="{{n.image.url}}">
+					  </a>
+				  </div>
+			  </div>
+			  {% endfor %}
+		  </div>
+          
+        </div>
+      </div>
+      
+      <div class="all_design">
+        <div class="visiting_card">
+			<div class="slider">
+			  {% for n in buisness_card %}
+			  <div class="p-4">
+				  <div class="slid shadow-bw p-2 rounded">
+					  <a href="/design-ditels/{{n.image_slug}}" class="click_count" id="{{n.image_slug}}">
+					  <img class="img-fluid rounded" src="{{n.image.url}}">
+					  </a>
+				  </div>
+			  </div>
+			  {% endfor %}
+		  </div>
+          
+        </div>
+      </div>
+  <script>
+	
+		$(document).on('click', '.click_count', function()
+				{
+						var postid = $(this).attr('id');
+						//var postid=parseInt(post);
+						var url1 = '/design_view_count/';
+						$.ajax({
+			 			type:'POST',
+			 			url :url1,
+			 			data : {postid:postid,
+			 					csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()},
+			 			success:function(){} 
+			 		});
+				});
+				
+		$(document).on('click', '.design_like', function()
+				{
+						var postid = $(this).attr('id');
+						var url1 = '/design_like/';
+						$.ajax({
+			 			type:'POST',
+			 			url :url1,
+			 			data : {postid:postid,
+			 					csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()},
+			 			success:function(){$("#liked1").load(location.href + " #liked1");} 
+			 		});
+				});
+		
+</script>
+    </div>
+
+      	<script>
+			  $(document).ready(function(){
+				  
+				$('.one-time').slick({
+				  dots: true,
+				  infinite: true,
+				  speed: 300,
+				  slidesToShow: 1,
+				  adaptiveHeight: true
+				});
+				
+				 $('.slider').mouseover(function() {
+				        $(this).slick('play');
+				    });
+				    $('.slider').mouseout(function() {
+				        $(this).slick('pause');
+				    });
+				
+				$('.slider').slick({
+				  autoplay:false,
+				  dots: true,
+				  infinite: true,
+				  speed: 300,
+				  slidesToShow: 4,
+				  slidesToScroll: 1,
+				  responsive: [
+				    {
+				      breakpoint: 1024,
+				      settings: {
+				        slidesToShow: 3,
+				        slidesToScroll: 1,
+				        infinite: true,
+				        dots: true
+				      }
+				    },
+				    {
+				      breakpoint: 600,
+				      settings: {
+				        slidesToShow: 2,
+				        slidesToScroll: 1
+				      }
+				    },
+				    {
+				      breakpoint: 480,
+				      settings: {
+				        slidesToShow: 1,
+				        slidesToScroll: 1
+				      }
+				    }
+				    // You can unslick at a given breakpoint now by adding:
+				    // settings: "unslick"
+				    // instead of a settings object
+				  ]
+				});
+				
+				});
+		</script>			
+
+
+{% endblock %}

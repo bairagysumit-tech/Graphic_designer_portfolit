@@ -1,0 +1,77 @@
+{% extends 'manon_base.html' %}
+
+{% block content %}
+  <div class="contact_block">
+    <div class="contact_section">
+      <div class="columns-4 w-row">
+        <div class="column-9 w-col w-col-6">
+			
+          <div class="form-block w-form " id="email_subs">
+			  <div><h6  class="alert-div"></h6></div>
+            <form id="email-form-2" name="email-form-2" data-name="Email Form 2" method="get" data-wf-page-id="650590ae19ad47b83fc46e55" data-wf-element-id="9b168114-6dde-29f0-c296-a6d6f6ab5ad7" aria-label="Email Form 2">
+              <label for="name-3">Name</label>
+              	<input type="text" class="text-field-3 w-input name" maxlength="256" name="name-3" data-name="Name 3" placeholder="Name" id="name-3" />
+              <label for="email">Email Address</label>
+              	<input type="email" class="text-field-2 w-input email" maxlength="256" name="email" data-name="Email" placeholder="Email" id="email" required="" />
+			  <input type="button" value="Submit" data-wait="Please wait..." class="btn shadow-bw rounded-pill w-100 text-secondary fw-bold submit" />
+            </form>
+            
+				<script>
+					$(document).on('click', '.submit', function()
+					{
+						var name = $('.name').val();
+						var postid = $('.email').val();
+						var url1 = '/email_subscribe/';
+						$.ajax({
+			 			type:'POST',
+			 			url :url1,
+			 			data : {postid:postid,name:name,
+			 					csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()},
+			 			success:function(data){
+							 if (data == "Exists"){
+								 $('.alert-div').text("This Email Allready Exists.");
+							 }
+							 else{
+								 $("#email_subs").load(location.href + " #email_subs");
+								 $('.alert-div').text("Email Submit Success.");} }
+						 		});
+					});
+				</script>
+				
+            <div class="w-form-done" tabindex="-1" role="region" aria-label="Email Form 2 success">
+              <div>Thank you! Your submission has been received!</div>
+            </div>
+            <div class="w-form-fail" tabindex="-1" role="region" aria-label="Email Form 2 failure">
+              <div>Oops! Something went wrong while submitting the form.</div>
+            </div>
+          </div>
+          <div class="social-link">
+            <h4 class="heading-11">Social Link</h4>
+          </div>
+          <div class="social_wrap">
+            <div class="social_link_btn">
+              <a href="#" class="social_link_button" target=”_blank”></a>
+            </div>
+            <div class="social_link_btn">
+              <a href="#" class="social_link_button" target=”_blank”></a>
+            </div>
+            <div class="social_link_btn">
+              <a href="#" class="social_link_button" target=”_blank”></a>
+            </div>
+            <div class="social_link_btn">
+              <a href="#" class="social_link_button" target=”_blank”></a>
+            </div>
+            <div class="social_link_btn">
+              <a href="#" class="social_link_button fa-icon" target=”_blank”></a>
+            </div>
+          </div>
+        </div>
+        <div class="w-col w-col-6">
+          <div class="about_image">
+            <img src="/static/image/manon.jpg" loading="lazy" alt="" class="image-8" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

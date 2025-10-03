@@ -1,0 +1,46 @@
+{% extends 'manon_base.html' %}
+
+{% block content %}
+	 <div class=" d-flex justify-content-center align-items-center my-5">
+		 
+		 <div class=" p-5 bg-light rounded-30  shadow">
+			<div class="shadow-bw  p-5 rounded-20 " >
+			
+			<div class="  rounded bg-light ">
+
+				<h3 class="text-center"> SignIn</span></h3> 
+				<div class="d-none">
+				</div>
+				<form method="post" action=".">
+					{% csrf_token %}
+					<div class="massa">
+						{% for n in message %}
+						<h6 class="text-danger">{{n}}</h6>
+						{% endfor %}
+					</div>
+					
+					<input type="email" name="username" placeholder="Email" class="form-control user" required><br>
+					<input type="hidden" name="next" value="{{request.GET.next}}">
+					
+					<label class='form-label'><b class="bi bi-lock-fill pass"></b> Password </label>
+					<div class="input-group mb-3 con">
+					  <input type="password" name="password" class="form-control pass" placeholder="Password" required>
+					  
+					</div>
+					<input type="submit" value="Submit" class="btn btn-light shadow-bw w-100 mb-3">
+				</form>
+			</div> 
+			<div class="mb-5 d-flex justify-content-between">
+				<div class=" btn shadow-bw me-2">
+					<a href="/signup/"  class="text-decoration-none text-secondary">SignUp</a>
+				</div>
+				<div class=" btn shadow-bw ms-2">
+					<a href="#"  class="text-decoration-none text-secondary">Forget Password</a>
+				</div>
+			</div>
+		</div> 
+			
+		 </div>
+	 </div>
+
+{% endblock %}

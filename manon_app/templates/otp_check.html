@@ -1,0 +1,27 @@
+{% extends 'manon_base.html' %}
+{% block content %}
+
+
+<div class="container-fluid " id="content">
+	<div class="row p-0 m-0">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-4 " >
+			<div class=" p-4 rounded bg-light shadow-bw my-5">
+			<h3 class="text-secondary text-center">OTP<span class="text-dark">Chack</span></h3> 
+				<div class="d-none{{cl}} fw-bold">
+				{{wm}}{{oc1}}
+				<h1>Hello World!!!</h1>
+				</div>
+				<form method="post" >
+					{% csrf_token %}
+					<label class='form-label'><b class="bi bi-file-earmark-lock2"></b> OTP Hear </label>
+					<input type="text" name="otp" placeholder="OTP" class="form-control user mb-4" required><br>
+					<input type="submit" value="Submit" class="btn btn-secondary w-100 mb-3">
+				</form>		
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

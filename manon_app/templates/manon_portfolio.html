@@ -1,0 +1,328 @@
+{% extends 'manon_base.html' %}
+
+{% block content %}
+
+      	<script>
+			  $(document).ready(function(){
+				  
+				$('.one-time').slick({
+				  dots: true,
+				  infinite: true,
+				  speed: 300,
+				  slidesToShow: 1,
+				  adaptiveHeight: true
+				});
+				
+				 $('.slider').mouseover(function() {
+				        $(this).slick('play');
+				    });
+				    $('.slider').mouseout(function() {
+				        $(this).slick('pause');
+				    });
+				
+				$('.slider').slick({
+				  autoplay:false,
+				  dots: true,
+				  infinite: true,
+				  speed: 300,
+				  slidesToShow: 4,
+				  slidesToScroll: 1,
+				  responsive: [
+				    {
+				      breakpoint: 1024,
+				      settings: {
+				        slidesToShow: 2,
+				        slidesToScroll: 1,
+				        infinite: true,
+				        dots: true
+				      }
+				    },
+				    {
+				      breakpoint: 600,
+				      settings: {
+				        slidesToShow: 2,
+				        slidesToScroll: 1
+				      }
+				    },
+				    {
+				      breakpoint: 480,
+				      settings: {
+				        slidesToShow: 1,
+				        slidesToScroll: 1
+				      }
+				    }
+				    // You can unslick at a given breakpoint now by adding:
+				    // settings: "unslick"
+				    // instead of a settings object
+				  ]
+				});
+				
+				});
+		</script>
+  <section class="portfolio_div">
+    <div class="portfolio_block">
+      <div class="my_porttfolio">
+        <h4 class="heading-6">My Design</h4>
+      </div>
+
+      <div class="all_design">
+        <div class="visiting_card">
+          <a href="/all-design/Flyer" class="text-decoration-none"><h5 class="item_name">Flayer</h5></a>
+          
+          <div class="slider">
+			  
+			  {% for n in flyer%}
+			  <div class="p-4">
+				  <div class="slid shadow-bw p-2 rounded">
+					  <a href="/design-ditels/{{n.image_slug}}" class="click_count" id="{{n.image_slug}}">
+					  	<img class="img-fluid rounded" src="{{n.image.url}}">
+					  </a>
+				  </div>
+			  </div>
+			  
+
+			  {% endfor %}
+		   </div>
+        </div>
+      </div>
+      
+      <div class="all_design">
+        <div class="visiting_card">
+          <a href="/all-design/Brochure" class="text-decoration-none">
+			  <h5 class="item_name">Brochure</h5>
+          </a>
+			<div class="slider">
+				  {% for n in brochure %}
+				  <div class="p-4">
+					  <div class="slid shadow-bw p-2 rounded">
+						  <a href="/design-ditels/{{n.image_slug}}" class="click_count" id="{{n.image_slug}}">
+						  <img class="img-fluid rounded" src="{{n.image.url}}">
+						  </a>
+					  </div>
+				  </div>
+				  {% endfor %}
+			  </div>
+        </div>
+      </div>
+      
+       <div class="all_design">
+        <div class="visiting_card">
+			<a href="/all-design/Branding" class="text-decoration-none">
+          		<h5 class="item_name">Branding</h5>
+          	</a>
+			<div class="slider">
+				  {% for n in branding %}
+				  <div class="p-4">
+					  <div class="slid shadow-bw p-2 rounded">
+						  <a href="/design-ditels/{{n.image_slug}}" class="click_count" id="{{n.image_slug}}">
+						  	<img class="img-fluid rounded" src="{{n.image.url}}">
+						  </a>
+					  </div>
+				  </div>
+				  {% endfor %}
+			  </div>
+        </div>
+      </div>
+      
+      
+      <div class="all_design">
+        <div class="visiting_card">
+			<a href="/all-design/Instagram" class="text-decoration-none">
+          		<h5 class="item_name">Instagram Post</h5>
+          	</a>
+			<div class="slider">
+				  {% for n in instagram %}
+				  <div class="p-4">
+					  <div class="slid shadow-bw p-2 rounded">
+						  <a href="/design-ditels/{{n.image_slug}}" class="click_count" id="{{n.image_slug}}">
+						  <img class="img-fluid rounded" src="{{n.image.url}}">
+						  </a>
+					  </div>
+				  </div>
+				  {% endfor %}
+			  </div>
+        </div>
+      </div>
+      
+      
+	<div class="all_design">
+        <div class="visiting_card">
+			<a href="/all-design/Post_Card" class="text-decoration-none">
+          		<h5 class="item_name">Post Card</h5>
+          	</a>
+			<div class="slider">
+				  {% for n in post_card %}
+				  <div class="p-4">
+					  <div class="slid shadow-bw p-2 rounded">
+						  <a href="/design-ditels/{{n.image_slug}}" class="click_count" id="{{n.image_slug}}">
+						  <img class="img-fluid rounded" src="{{n.image.url}}">
+						  </a>
+					  </div>
+				  </div>
+				  {% endfor %}
+			  </div>
+        </div>
+      </div>
+      
+      
+ 	<div class="all_design">
+        <div class="visiting_card">
+			<a href="/all-design/Rack_Card" class="text-decoration-none">
+          		<h5 class="item_name">Rack Card</h5>
+          	</a>
+			<div class="slider">
+				  {% for n in rack_card %}
+				  <div class="p-4">
+					  <div class="slid shadow-bw p-2 rounded">
+						  <a href="/design-ditels/{{n.image_slug}}" class="click_count" id="{{n.image_slug}}">
+						  <img class="img-fluid rounded" src="{{n.image.url}}">
+						  </a>
+					  </div>
+				  </div>
+				  {% endfor %}
+			  </div>
+        </div>
+      </div>
+      
+   <div class="all_design">
+        <div class="visiting_card">
+			<a href="/all-design/Buisness_Card" class="text-decoration-none">
+          		<h5 class="item_name">Buisness Card</h5>
+          	</a>
+			<div class="slider">
+				  {% for n in buisness_card %}
+				  <div class="p-4">
+					  <div class="slid shadow-bw p-2 rounded">
+						  <a href="/design-ditels/{{n.image_slug}}" class="click_count" id="{{n.image_slug}}">
+						  <img class="img-fluid rounded" src="{{n.image.url}}">
+						  </a>
+					  </div>
+				  </div>
+				  {% endfor %}
+			  </div>
+         </div>
+      </div>
+      
+      <div class="all_design">
+        <div class="visiting_card">
+			<a href="/all-design/Book Cover" class="text-decoration-none">
+          		<h5 class="item_name">Book Cover</h5>
+          	</a>
+			<div class="slider">
+				  {% for n in book_cover %}
+				  <div class="p-4">
+					  <div class="slid shadow-bw p-2 rounded">
+						  <a href="/design-ditels/{{n.image_slug}}" class="click_count" id="{{n.image_slug}}">
+						  <img class="img-fluid rounded" src="{{n.image.url}}">
+						  </a>
+					  </div>
+				  </div>
+				  {% endfor %}
+			  </div>
+         </div>
+      </div>
+      
+            <div class="all_design">
+        <div class="visiting_card">
+			<a href="/all-design/" class="text-decoration-none">
+          		<h5 class="item_name">Latterhead</h5>
+          	</a>
+			<div class="slider">
+				  {% for n in Letter_Head %}
+				  <div class="p-4">
+					  <div class="slid shadow-bw p-2 rounded">
+						  <a href="/design-ditels/{{n.image_slug}}" class="click_count" id="{{n.image_slug}}">
+						  <img class="img-fluid rounded" src="{{n.image.url}}">
+						  </a>
+					  </div>
+				  </div>
+				  {% endfor %}
+			  </div>
+         </div>
+      </div>
+      
+      
+            <div class="all_design">
+        <div class="visiting_card">
+			<a href="/all-design/" class="text-decoration-none">
+          		<h5 class="item_name">Email Signature</h5>
+          	</a>
+			<div class="slider">
+				  {% for n in Email_Signature %}
+				  <div class="p-4">
+					  <div class="slid shadow-bw p-2 rounded">
+						  <a href="/design-ditels/{{n.image_slug}}" class="click_count" id="{{n.image_slug}}">
+						  <img class="img-fluid rounded" src="{{n.image.url}}">
+						  </a>
+					  </div>
+				  </div>
+				  {% endfor %}
+			  </div>
+         </div>
+      </div>
+      
+      
+            <div class="all_design">
+        <div class="visiting_card">
+			<a href="/all-design/" class="text-decoration-none">
+          		<h5 class="item_name">Facebook Cover</h5>
+          	</a>
+			<div class="slider">
+				  {% for n in Facebook_Cover  %}
+				  <div class="p-4">
+					  <div class="slid shadow-bw p-2 rounded">
+						  <a href="/design-ditels/{{n.image_slug}}" class="click_count" id="{{n.image_slug}}">
+						  <img class="img-fluid rounded" src="{{n.image.url}}">
+						  </a>
+					  </div>
+				  </div>
+				  {% endfor %}
+			  </div>
+         </div>
+      </div>
+      
+      
+            <div class="all_design">
+        <div class="visiting_card">
+			<a href="/all-design/" class="text-decoration-none">
+          		<h5 class="item_name">YouTube Thumnel</h5>
+          	</a>
+			<div class="slider">
+				  {% for n in YouTube_Thumnel %}
+				  <div class="p-4">
+					  <div class="slid shadow-bw p-2 rounded">
+						  <a href="/design-ditels/{{n.image_slug}}" class="click_count" id="{{n.image_slug}}">
+						  <img class="img-fluid rounded" src="{{n.image.url}}">
+						  </a>
+					  </div>
+				  </div>
+				  {% endfor %}
+			  </div>
+         </div>
+      </div>
+      
+          
+      
+      
+      
+      
+    </div>
+
+<script>
+	$(document).on('click', '.click_count', function()
+		{
+				var postid = $(this).attr('id');
+				var url1 = '/design_view_count/';
+				$.ajax({
+	 			type:'POST',
+	 			url :url1,
+	 			data : {postid:postid,
+	 					csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()},
+	 			success:function(){} 
+	 		});
+		});
+</script>
+  </section>
+  
+
+{% endblock %}

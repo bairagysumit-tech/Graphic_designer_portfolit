@@ -1,0 +1,446 @@
+{% extends 'manon_base.html' %}
+
+{% block title %}
+Manon || Home
+{% endblock %}
+{% block content %}
+			<script>
+				$(document).ready(function(){
+					
+					$('.bs').mouseover(function(){
+						$(this).removeClass('rounded ');
+						$(this).addClass('rounded-pill');
+					});
+					
+					$('.bs').mouseout(function(){
+						$(this).removeClass('rounded-pill ');
+						$(this).addClass('rounded ');
+					});
+				
+					$('.slider').slick({
+			  dots: true,
+			  infinite: true,
+			  
+			  speed: 300,
+			  slidesToShow: 4,
+			  slidesToScroll: 1,
+			  responsive: [
+			    {
+			      breakpoint: 1024,
+			      settings: {
+			        slidesToShow: 3,
+			        slidesToScroll: 3,
+			        infinite: true,
+			        dots: true
+			      }
+			    },
+			    {
+			      breakpoint: 600,
+			      settings: {
+			        slidesToShow: 2,
+			        slidesToScroll: 2
+			      }
+			    },
+			    {
+			      breakpoint: 480,
+			      settings: {
+			        slidesToShow: 1,
+			        slidesToScroll: 1
+			      }
+			    }
+			    // You can unslick at a given breakpoint now by adding:
+			    // settings: "unslick"
+			    // instead of a settings object
+			  ]
+			});
+			
+			$('.row2').slick({
+			  dots: true,
+			  infinite: true,
+			  
+			  speed: 300,
+			  slidesToShow: 3,
+			  slidesToScroll: 1,
+			  responsive: [
+			    {
+			      breakpoint: 1024,
+			      settings: {
+			        slidesToShow: 3,
+			        slidesToScroll: 3,
+			        infinite: true,
+			        dots: true
+			      }
+			    },
+			    {
+			      breakpoint: 600,
+			      settings: {
+			        slidesToShow: 2,
+			        slidesToScroll: 2
+			      }
+			    },
+			    {
+			      breakpoint: 480,
+			      settings: {
+			        slidesToShow: 1,
+			        slidesToScroll: 1
+			      }
+			    }
+			    // You can unslick at a given breakpoint now by adding:
+			    // settings: "unslick"
+			    // instead of a settings object
+			  ]
+			});
+			
+			$('.row3').slick({
+			  dots: true,
+			  infinite: true,
+			  
+			  speed: 300,
+			  slidesToShow: 3,
+			  slidesToScroll: 1,
+			  responsive: [
+			    {
+			      breakpoint: 1024,
+			      settings: {
+			        slidesToShow: 3,
+			        slidesToScroll: 3,
+			        infinite: true,
+			        dots: true
+			      }
+			    },
+			    {
+			      breakpoint: 600,
+			      settings: {
+			        slidesToShow: 2,
+			        slidesToScroll: 2
+			      }
+			    },
+			    {
+			      breakpoint: 480,
+			      settings: {
+			        slidesToShow: 1,
+			        slidesToScroll: 1
+			      }
+			    }
+			    // You can unslick at a given breakpoint now by adding:
+			    // settings: "unslick"
+			    // instead of a settings object
+			  ]
+			});
+				});
+		
+			</script>
+<div class="hero_col w-row">
+        <div class="text_section w-col w-col-6">
+          
+          
+          <div class="heading_div">
+            <h1 " class="heading">Hi, I'm <span class="name">Manon Ahmed</span>.<br />Graphic and Motion designer.</h1>
+          </div>
+          <div class="tag_line">
+            <p " class="tag-pragraph">My designs seek to simplify complex ideas and visualize them into stylish and fascinating graphics.</p>
+          </div>
+          <div class="all_social">
+            <div  class="all_social_wrap">
+              <div class="get_touch">
+                <div class="get_touch_btn">
+                  <a href="#" class="link-2"><span class="gic_icon"></span> <span class="git_text">Get in touch</span></a>
+                </div>
+              </div>
+             <div class="social_wrap">
+            <div class="social_link_btn">
+              <a href="#" class="social_link_button" target=”_blank”></a>
+            </div>
+            <div class="social_link_btn">
+              <a href="#" class="social_link_button" target=”_blank”></a>
+            </div>
+            <div class="social_link_btn">
+              <a href="#" class="social_link_button" target=”_blank”></a>
+            </div>
+            <div class="social_link_btn">
+              <a href="#" class="social_link_button" target=”_blank”></a>
+            </div>
+            <div class="social_link_btn">
+              <a href="#" class="social_link_button fa-icon" target=”_blank”></a>
+            </div>
+          </div>
+            </div>
+          </div>
+        </div>
+        
+        <div  class="image_section w-col w-col-6">
+          <div>
+			  
+            <div class="image_wrap ">
+              <div class="image_wrap_inner">
+                <div class="hero_image">
+                  <img src="/static/image/manon.jpg" alt="" class="image" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <section class="about_section">
+        <div class="about_div">
+          <div class="w-layout-grid grid">
+            <div id="w-node-_47ddf58d-830f-9c1b-e825-4bc019a1edad-bf80d327" class="about_text_block">
+              <div class="about_text_wrapar">
+                <h1 class="heading-2">About me<span class="about_me_icon"></span></h1><p class="about_me_pragraph">
+                  Greetings! I'm  Manon <span class="name">Ahmed</span>. My heart has always been captivated by the world of design, and over time, I have amassed a diverse array of experiences within this dynamic industry. Design, to me, embodies an irresistible charm, embracing everyone and everything. The thrill of problem-solving through thoughtful design solutions is an unparalleled joy in my life.
+                </p>
+              </div>
+            </div>
+            <div id="w-node-_26e0a299-0687-0782-b971-3357bb5583e6-bf80d327" class="about_btn_block">
+              <div class="get_touch_btn">
+                <a href="/about/" class="link-3"><span class="about_arrow"></span> <span class="more_about_link_text">More about me</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+       <section class="myservices ">
+        <div  class="footer_inner_wrap port_wrap " >
+			<div class="m-3">
+				<a href="/portfolio/" class="text-decoration-none text-secondary">
+					<h2 class="text-center shadow-bw rounded p-3 mb-5">Services</h2>
+				</a>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-4 col-sm-6 ">
+					<a href = 'all-design/Brochure/' class="text-decoration-none p-0 m-0 text-secondary">
+						<div class="d-flex justify-content-center m-3 h-100  py-3" >
+							<div class="w-100 h-100 d-flex justify-content-center align-items-center shadow-bw t-5  bs rounded  p-5" >
+								<div >
+									<h4 class="text-center"> Brochure Design</h4>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+				
+				<div class="col-md-4 col-sm-6">
+					<a href = '/all-design/Flyer/' class="text-decoration-none p-0 m-0 text-secondary">
+					<div class="d-flex justify-content-center m-3 h-100  py-3" >
+						<div class=" w-100 h-100 d-flex justify-content-center  align-items-center rounded shadow-bw p-5 t-5  bs" >
+							<div >
+							<h4 class="text-center">Flyer Design</h4>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+				
+				<div class="col-md-4 col-sm-6">
+					<a href = 'all-design/Instagram/' class="text-decoration-none p-0 m-0 text-secondary">
+					<div class="d-flex justify-content-center m-3 h-100  py-3" >
+						<div class="w-100  h-100 d-flex justify-content-center  align-items-center rounded shadow-bw p-5 t-5  bs" >
+							<div >
+							<h4 class="text-center">Instagram Post Design</h4>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+				
+				<div class="col-md-4 col-sm-6">
+					<a href = '/all-design/Branding/' class="text-decoration-none p-0 m-0 text-secondary">
+					<div class="d-flex justify-content-center m-3 h-100  py-3" >
+						<div class="w-100  h-100 d-flex justify-content-center  align-items-center rounded shadow-bw p-5 t-5  bs" >
+							<div >
+							<h4 class="text-center">Branding</h4>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+				
+				<div class="col-md-4 col-sm-6">
+					<a href = 'all-design/Rack_Card/' class="text-decoration-none p-0 m-0 text-secondary">
+					<div class="d-flex justify-content-center m-3 h-100  py-3" >
+						<div class="w-100  h-100 d-flex justify-content-center  align-items-center rounded shadow-bw p-5 t-5  bs" >
+							<div >
+							<h4 class="text-center">Rack Card Design</h4>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+				
+				<div class="col-md-4 col-sm-6">
+					<a href = '/all-design/Book%20Cover/' class="text-decoration-none p-0 m-0 text-secondary">
+					<div class="d-flex justify-content-center m-3 h-100  py-3" >
+						<div class="w-100  h-100 d-flex justify-content-center  align-items-center rounded shadow-bw p-5 t-5  bs" >
+							<div >
+							<h4 class="text-center">Book Cover Design </h4>
+							</div>
+						</div>
+					</div>
+					</a>
+				</div>
+				
+			</div>
+		</div>
+	  </section>
+      
+      <section class="myservices ">
+        <div  class="footer_inner_wrap port_wrap  " >
+			<div class="row">
+				<div class="m-3">
+				<h2 class="text-center shadow-bw rounded-pill p-3 mb-5">Project Ditels</h2>
+			</div>
+				<div class="col-md-4 ">
+					<div class="d-flex justify-content-center py-3 " >
+						<div class=" d-flex justify-content-center  align-items-center review_circle" >
+							<div >
+							<h5 class="text-center ">Total Project</h5>
+							<h1 class="text-center">50+</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 d-flex justify-content-center">
+					<div class="d-flex justify-content-center py-3" >
+						<div class=" d-flex justify-content-center  align-items-center review_circle1" >
+							<div >
+							<h5 class="text-center ">Ongoing Project</h5>
+							<h1 class="text-center">5+</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 d-flex justify-content-center">
+					<div class="d-flex justify-content-center py-3" >
+						<div class=" d-flex justify-content-center  align-items-center review_circle2" >
+							<div >
+							<h5 class="text-center ">Total Client</h5>
+							<h1 class="text-center">35+</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	  </section>
+	  
+      <section class="myservices">
+        <div  class="footer_inner_wrap port_wrap">
+          <div class="about_me_btn new_div">
+            <a href="/portfolio/" class="link-3">Design</a>
+          </div>
+          
+          <div class="div-block">
+			  
+            <div class="w-layout-grid grid-5 slider">
+				
+				{% for design in ad %}
+	              <div id="" class="portfoli-1">
+	                <div class="div_1">
+	                  <img src="{{ design.image.url}}"  class="pre_class" />
+	                </div>
+	              </div>
+              	{% endfor %}
+              	
+              
+            </div>
+          </div>
+          
+          <div class="port_div_bottom">
+            <div class="about_me_btn view_more">
+              <a href="/portfolio/" class="link-3">More View</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="myservices d-none">
+        <div  class="footer_inner_wrap port_wrap  " >
+				<h2 class="text-center shadow-bw rounded-pill p-3 mb-5">Reviews</h2>
+				
+			<div class="slider">
+				
+				<div class=" my-2">
+					<div class="d-flex justify-content-center " >
+						<div class=" d-flex justify-content-center  align-items-center shadow-bw p-5 rounded w-100 h-100 m-2">
+							<div >
+								<h6>Some Comment</h6>
+								<h6 class="text-center ">
+									<i class="bi bi-star-fill"></i>
+									<i class="bi bi-star-fill"></i>
+									<i class="bi bi-star-fill"></i>
+									<i class="bi bi-star-fill"></i>
+									<i class="bi bi-star-fill"></i>
+								</h6>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+								
+				<div class=" my-2">
+					<div class="d-flex justify-content-center " >
+						<div class=" d-flex justify-content-center  align-items-center shadow-bw p-5 rounded w-100 h-100 m-2">
+							<div >
+								<h6>Some Comment</h6>
+								<h6 class="text-center ">
+									<i class="bi bi-star-fill"></i>
+									<i class="bi bi-star-fill"></i>
+									<i class="bi bi-star-fill"></i>
+									<i class="bi bi-star-fill"></i>
+									<i class="bi bi-star-fill"></i>
+								</h6>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+								
+				<div class=" my-2">
+					<div class="d-flex justify-content-center " >
+						<div class=" d-flex justify-content-center  align-items-center shadow-bw p-5 rounded w-100 h-100 m-2">
+							<div >
+								<h6>Some Comment</h6>
+								<h6 class="text-center ">
+									<i class="bi bi-star-fill"></i>
+									<i class="bi bi-star-fill"></i>
+									<i class="bi bi-star-fill"></i>
+									<i class="bi bi-star-fill"></i>
+									<i class="bi bi-star-fill"></i>
+								</h6>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+								
+				<div class=" my-2">
+					<div class="d-flex justify-content-center " >
+						<div class=" d-flex justify-content-center  align-items-center shadow-bw p-5 rounded w-100 h-100 m-2">
+							<div >
+								<h6>Some Comment</h6>
+								<h6 class="text-center ">
+									<i class="bi bi-star-fill"></i>
+									<i class="bi bi-star-fill"></i>
+									<i class="bi bi-star-fill"></i>
+									<i class="bi bi-star-fill"></i>
+									<i class="bi bi-star-fill"></i>
+								</h6>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				
+			</div>
+
+		</div>
+	  </section>
+	  
+
+      
+
+{% endblock %}

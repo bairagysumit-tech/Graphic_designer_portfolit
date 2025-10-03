@@ -1,0 +1,336 @@
+{% extends 'manon_base.html' %}
+
+{% block content %}
+
+  <section class="blog_section">
+    <div class="blog_block ">
+      <div class="div-block-2 px-5 pb-3 border-bottom border-1 border-secondary mb-5">
+        <h4 class="heading-6">Blog</h4>
+      
+      </div>
+        
+        {% if user.is_authenticated and user.user_profile.profile == 'staf' or user.is_superuser %}
+        <div class="p-5">
+	        <div class="p-5 h-50 shadow-bw rounded rounded">
+	        	<h1 class="text-center"> New Post</h1>
+	        	<div class="">
+					<form method="POST" action="/blog_insert/" enctype="multipart/form-data" >
+						{% csrf_token%}
+						<div class="image_get">
+							<!--<div class="my-3 shadow-bw rounded p-1 "> <input type="file" name="image0" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> -->
+						</div>
+						<div class="d-flex justify-content-center">
+							<h6 class="bi bi-card-image mx-3 btn btn-light shadow-bw add_image "> Add Image</h6>
+							<!--<h6 class="bi bi-trash-fill mx-3 btn btn-danger  shadow-bw del_image "> Delete Image</h6> -->
+						</div>
+						<input type="text" name="lr" value="0" class="lr d-none">
+						<script>
+
+						$(document).ready(function(){
+							
+							var input_fields = '<div class="my-3 shadow-bw rounded p-1 input_iamge d-flex"><input type="file" name="image0" class="form-control image_input" id="exampleInputEmail1" aria-describedby="emailHelp" require><h6 class="bi bi-trash-fill btn p-1 ps-3 m-0 text-danger image_delete"></h6></div>';
+							var del_div = $('.del_image');
+							
+							del_div.on('click',function(event){
+								var divs = $('.image_get').find('div').length;
+								if (divs >1){
+								$('.image_get div:last-child').remove();}
+							});
+							
+							$('.add_image').click(function(){
+								var divs = $('.image_get').find('div').length;
+								var last_div = $('.image_get div:last-child').find('input[type=file]').val();
+								
+								if (last_div != '' )
+									{
+										$('.image_get').append(input_fields);
+										$('.image_input').each(function(index, element)
+											{
+												$(element).attr('name','image'+index);
+											}
+										);
+										$('.lr').val(divs+1);
+										
+									}
+								else{ $('.add_iamge').addClass('d-none');}
+							});
+							
+						});
+						
+						$(document).on('click', '.image_delete', function()
+							{
+							$(this).parent().remove();
+							$('.image_input').each(function(index, element)
+								{
+									$(element).attr('name','image'+index);
+								});
+							var divs = $('.image_get').find('div').length;
+								$('.lr').val(divs);
+							});
+							
+						</script>
+				
+					  
+					   	<div class="mb-3">
+					    	<label for="exampleInputEmail1" class="form-label">Title of Blog....</label>
+					    	<input type="text" name="blog" class="form-control" placeholder="Blog Title" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+					  	</div>
+					  
+					  	<div class="mb-3">
+					  		<label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+					  		<textarea class="form-control" name="blog_text" id="exampleFormControlTextarea1" rows="3" placeholder="Blog Text" required></textarea>
+						</div>
+						
+						<div class="mb-3">
+					    	<label for="exampleInputEmail1" class="form-label">Blog Tag</label>
+					    	<input type="text" name="tag" class="form-control" placeholder="Blog Tag" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+					  	</div>
+					  	
+					  	<div class="mb-3">
+					    	<label for="exampleInputEmail1" class="form-label">Image Alt Tag</label>
+					    	<input type="text" name="image_alt" class="form-control" placeholder="Image Alt Tag" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+					  	</div>
+					  	
+					  	<div class="mb-3">
+					    	<label for="exampleInputEmail1" class="form-label">Image Title</label>
+					    	<input type="text" name="image_title" class="form-control" placeholder="Image Title" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+					  	</div>
+					  	
+					  	<button type="submit" class="btn btn-primary w-100">Submit</button>
+					</form>
+				</div>
+	        </div>
+        </div>
+        {% endif %}
+
+      
+      <div class="container">
+		  
+		  {% for n in blog %}
+		  <div class="row mb-5">
+			  <div class="col-xl-3"></div>
+			  <div class="col-xl-6">
+				  <div class="">
+					  {% if user.user_profile.profile == 'staf' or user.is_superuser %}
+					  <div class="shadow-bw rounded-30 p-3 ">
+							<div class=" border-bottom border-1 border-secondary mb-2 d-flex justify-content-between px-2">
+								<div class="">
+									<h6 class="bi bi-clock"> {{n.time}}</h4>
+								</div>
+								
+								<div class="d-flex ">
+									<div class="mx-1">
+										<a href="/blog_delete/{{n.id}}/" class="text-danger text-decoration-none">
+											<h6 class="bi bi-bell "><sup>5</sup></h6>
+										</a>
+									</div>
+									
+									{% if n.status == False %}
+									<div class=" mx-1 text-danger private{{n.id}}" id="private{{n.id}}">
+										<h6 class="bi bi-eye-slash-fill "> </h6>
+									</div>
+									{% else %}
+									<div class="mx-1 text-success private{{n.id}}"  id="private{{n.id}}">
+										<h6 class="bi bi-eye-fill"> </h6>
+									</div>
+									{% endif %}
+									<script>
+									$(document).on('click', '.private{{n.id}}', function()
+									{
+									var postid = '{{n.id}}';
+									var url1 = '/blog_public_privet/';
+									$.ajax({
+						 			type:'POST',
+						 			url :url1,
+						 			data : {postid:postid,
+						 					csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()},
+						 			success:function(){$("#private{{n.id}}").load(location.href + " #private{{n.id}}");} 
+									 		});
+										});
+									</script>
+									<div class="mx-1">
+										<a href="/blog_edit/{{n.id}}/" class="text-decoration-none text-success mx-1">
+											<h6 class="bi bi-pencil-square"></h6>
+										</a>
+									</div>
+									<div class="mx-1">
+										<a href="/blog_delete/{{n.id}}/" class="text-danger">
+											<h6 class="bi bi-trash "></h6>
+										</a>
+									</div>
+								</div>
+								
+							</div>
+						
+							
+						  <div class="rounded-top-20 overflow-hidden">
+							  	<div class="one-time">
+									{% for m in image %}
+			        					{% if n == m.image_id %}
+								  		<div class="">
+											<img class=" w-100" src="{{ m.image.url}}" >
+							  			</div>
+							  			 {%endif %}
+		        					{% endfor%}
+						  		</div>
+						  		<a class="text-decoration-none text-secondary" href="/blog_ditels/{{n.blog_slug}}/">
+						  		<h4>{{ n.title1 }}</h4>
+						  		<h6 class="py-2">{{n.blog|truncatechars:200}}  <div class="btn rounded-pill shadow-bw p-0 px-3 ms-3"> More</div></h6>
+						  		</a>
+						  </div>
+						  
+							<div class="">
+					        	<div class="p-2">
+						        	<div class="d-flex justify-content-around border-top border-1 border-secondary">
+										<div class="">
+											<h4 class="bi bi-heart-fill text-danger"> </h5>
+										</div>
+										<div class="">
+											<h4 class="bi bi-chat-square-dots text-dark comment-btn"> </h4>
+										</div>
+										<div class="">
+											<h4 class="bi bi-share text-primary "></h6>
+										</div>
+									</div>
+								</div> 
+				    		</div>
+				    	</div>
+				    	
+				    	{% endif %}
+				    	
+				    	{% if user.is_superuser %}
+				    	{% else %}
+				    	
+				    	{% if user.user_profile.profile != 'staf' and  user.user_profile.profile != 'admin' and n.status == True %}
+							<div class="shadow-bw rounded-30 p-3 ">
+							
+							<div class=" border-bottom border-1 border-secondary mb-2 ">
+								<div class="">
+									<h4 class="bi bi-clock"> {{n.time}}</h4>
+								</div>	
+							</div>
+						
+							
+						  <div class="rounded-top-20 " style="overflow: hidden;">
+							  	<div class="one-time" style="overflow: hidden;">
+									{% for m in image %}
+			        					{% if n == m.image_id %}
+								  		<div class="">
+											<img class=" w-100" src="{{ m.image.url}}" >
+							  			</div>
+							  			 {%endif %}
+		        					{% endfor%}
+						  		</div>
+						  		
+						  		<a class="text-decoration-none text-secondary blog_view_count" id="{{n.id}}" href="/blog_ditels/{{n.blog_slug}}/">
+						  			<h4>{{ n.title1 }}</h4>
+						  			<h6 class="py-2">{{n.blog|truncatechars:200}}  <div class="btn rounded-pill shadow-bw p-0 px-3 ms-3"> More</div></h6>
+						  		</a>
+						  </div>
+						  
+							<div class="">
+					        	<div class="p-2">
+						        	<div class="d-flex justify-content-around border-top border-1 border-secondary">
+										<div class="" id="like{{n.id}}">
+											{% if user.is_authenticated %}	
+											<h4 class="bi bi-heart-fill btn  text-danger like{{n.id}}"> {{n.like}}</h4>
+											{% else %}
+											<a href="/signin/?next={{ request.path }}">
+												<h4 class="bi bi-heart-fill btn  text-danger like{{n.id}}"> {{n.like}}</h4>
+											</a>
+											{% endif %}
+										</div>
+										<div class="">
+											<a class="text-decoration-none" href="/blog_ditels/{{n.blog_slug}}/">
+												<h4 class="bi bi-chat-square-dots btn text-dark comment-btn"> {{n.comment}}</h4>
+											</a>
+										</div>
+										<div class="">
+											<h4 class="bi bi-eye btn text-primary">
+											{{n.blog_view}}
+											</h4>
+										</div>
+									</div>
+								</div>
+								
+								<script>
+									$(document).on('click', '.like{{n.id}}', function()
+									{
+									var postid = '{{n.id}}';
+									var url1 = '/postlike/';
+									$.ajax({
+						 			type:'POST',
+						 			url :url1,
+						 			data : {postid:postid,
+						 					csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()},
+						 			success:function(){$("#like{{n.id}}").load(location.href + " #like{{n.id}}");} 
+						 		});
+							});
+							
+							
+						$(document).on('click', '.blog_view_count', function()
+							{
+									var postid = $(this).attr('id');
+									var url1 = '/blog_view_count/';
+									$.ajax({
+						 			type:'POST',
+						 			url :url1,
+						 			data : {postid:postid,
+						 					csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()},
+						 			success:function(){} 
+						 		});
+							});
+
+							
+							
+							
+							$(document).ready(function(){
+								$('.copy_link_btn{{n.id}}').click(function(){
+									var copyText = $(this).find('a').attr('href').select();
+									copyText.select();
+									document.execCommand("copy");
+								});
+							});
+							
+								</script>
+				    		</div>
+				    	</div>
+				    	{% endif %}
+				    	{% endif %}
+				    	
+					 
+					  
+					  
+				  </div> 
+			  </div>
+			  <div class="col-xl-3"></div>  
+		  </div>
+		  
+		  {% endfor %}
+		  
+		  
+    
+
+    
+    	<script>
+			  $(document).ready(function(){
+				$('.one-time').slick({
+				  dots: true,
+				  infinite: true,
+				  speed: 300,
+				  slidesToShow: 1,
+				  adaptiveHeight: true
+				});
+				
+				$('.comment-btn').click(function(){
+					var targets = $(this).closest(".row").find(".comment");
+					$(targets).toggleClass('d-none');
+				});
+				
+				
+			  });
+		  </script>
+  </section>
+  
+
+{% endblock %}>

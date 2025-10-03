@@ -1,0 +1,78 @@
+{% extends 'manon_base.html' %}
+{% block content %}
+<div>
+<div class="container p-5 my-5 shadow-bw rounded" >
+		<form method="POST"  enctype="multipart/form-data" >
+			{% csrf_token%}
+			<div class="d-flex justify-content-center p-5">
+			<div class="image-view shadow-bw rounded overflow-hidden p-2" style="width: 400px; min-height: 200px;">
+				<img src="{{image.image.url}}" class="imageview">
+			</div>
+			</div>
+			  <div class="mb-3">
+			    <label for="exampleInputEmail1" class="form-label"  >Image</label>
+			    <input type="file" value="{{image.image}}" placeholder="Image" name="image"  class="form-control get-image" id="exampleInputEmail1" aria-describedby="emailHelp" require>
+			  </div>
+			  
+			 <select class="form-select" name="type" aria-label="Default select example" required>
+			  <option value="{{image.catagory}}">{{image.catagory}} </option>
+			  <option value="Brochure">Brochure </option>
+			  <option value="Flyer">Flyer</option>
+			  <option value="Branding">Branding</option>
+			  <option value="Instagram">Instagram</option>
+			  <option value="Post_Card">Post Card</option>
+			  <option value="Rack_Card">Rack Card</option>
+			  <option value="Buisness_Card">Buisness Card</option>
+			  <option value="Book Cover">Book Cover</option>
+			  <option value="Letter_Head">Latter Head</option>
+			  <option value="Email_Signature">Email Signature</option>
+			  <option value="Facebook_Cover">Facebook Cover</option>
+			  <option value="YouTube_Thumnel">YouTube Thumnel</option>
+			</select>
+			  
+			 <div class="mb-3">
+			    <label for="exampleInputEmail1" class="form-label">Image Title</label>
+			    <input type="text" value="{{image.ditels}}" placeholder="Image Description" name="desc" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+			 </div>
+			 
+			 <div class="mb-3">
+			    <label for="exampleInputEmail1" class="form-label">Design View</label>
+			    <input type="text" value="{{image.design_view}}" placeholder="1000+ Views" name="design_view" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+			 </div>
+			 
+			 <div class="mb-3">
+			    <label for="exampleInputEmail1" class="form-label">Design Like</label>
+			    {% if image.design_like1 == None  %}
+			    	<input type="text" value="382" placeholder="641+ Like" name="design_like" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+			    {% elif image.design_like == None %}
+			    	<input type="text" value="382" placeholder="641+ Like" name="design_like" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+			    {% else %}
+			    	<input type="text" value="{{image.design_like|add:image.design_like1}}" placeholder="641+ Like" name="design_like" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+			    {% endif %}
+			 </div>
+			 
+			 <div class="mb-3">
+			    <label for="exampleInputEmail1" class="form-label">Design Tag</label>
+			    <input type="text" value="" placeholder="Unique, Design" name="design_tag" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+			 </div>
+
+		  	<button type="submit" class="btn btn-primary w-100 my-3">Submit</button>
+		</form>
+</div>
+</div>
+
+<script>
+	$(document).ready(function(){
+		
+		$('.get-image').change( function(event) {
+		var tmppath = URL.createObjectURL(event.target.files[0]);
+		var image = "<img class='imageview  rounded'>";
+		$('.imageview').remove();
+		$('.image-view').append(image);
+		$(".imageview").fadeIn("fast").attr('src',tmppath);
+				
+			});
+	});
+</script>
+
+{% endblock %}
